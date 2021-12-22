@@ -1,12 +1,71 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Medium Style Editor-->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{% static 'css/blog.css'%}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Rasa&display=swap" rel="stylesheet"> 
+
 </head>
 <body>
+    <nav class="navbar navbar-default techfont custom-navbar">
+        <div class="container">
+            <ul>
+                <li>
+                    <a class='navbar-brand bigbrand' href="{% url post_list%}">My Blog</a>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                    <a href="https://www.github.com/DLiSWE">My Github</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com">LinkedIn</a>
+                </li>
+            </ul>
+            <ul class='nav navbar-nav navbar-right'>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'post_new'%}">New Post</a>
+                </li>
+                <li>
+                    <a href="{% url 'post_draft_list'%}">Drafts</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout'%}">Logout</a>
+                </li>
+                <li>
+                    <a>Welcome: {{user.username}}</a>
+                </li>
+                    {% else %}
+                    <li>
+                        <a class="nav navbar-right" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif%}
+        </div>
+
+    </nav>
     
+<!-- NAVBAR -->
+
+<!-- CONTENT BLOCK-->
+
 </body>
 </html>
